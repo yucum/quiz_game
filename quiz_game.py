@@ -2,6 +2,7 @@ import time
 import random
 from threading import Timer
 
+#Clase principal del juego --> preguntas y respuestas
 class QuizGame:
     def __init__(self):
         self.preguntas = {
@@ -32,19 +33,23 @@ class QuizGame:
                  "opciones": ["A. 'Crimen y castigo'", "B. 'Guerra y paz'", "C. 'El extranjero'", "D. 'Matar a un ruiseñor'"]}
             ]
         }
+        #Opciones a elegir
         self.respuestas = {
             "Hijo": ["B", "C", "A"],
             "Padre": ["C", "B", "A"],
             "Abuelo": ["B", "B", "A"]
         }
+        #Porcentaje de errores
         self.puntaje = {"Aciertos": 0, "Fallos": 0}
 
+    #Muestra las preguntas de QuizGame
     def mostrar_pregunta(self, nivel, pregunta):
         print(f"\nNivel {nivel}: {pregunta['pregunta']}")
         for opcion in pregunta['opciones']:
             print(opcion)
         print("\nIngresa tu respuesta (A, B, C o D): ")
 
+    #Temporizador por pregunta 
     def temporizador(self):
-        print("\n¡Tiempo agotado! Esta pregunta se contará como incorrecta.")
+        print("\n¡Tiempo agotado! Esta pregunta se contará como incorrecta.") #Si pasa el timepo cuenta como fallo
         self.puntaje["Fallos"] += 1
