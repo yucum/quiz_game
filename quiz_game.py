@@ -2,10 +2,10 @@ import time
 import random
 from threading import Timer
 
-#Clase principal del juego --> preguntas y respuestas
 class QuizGame:
     def __init__(self):
         self.preguntas = {
+         # Inicialización de las preguntas y respuestas por nivel
             "Hijo": [
                 {"pregunta": "¿Cuál es la función principal de un bucle 'for' en Java?",
                  "opciones": ["A. Declarar variables.", "B. Repetir un bloque de código.", "C. Definir métodos.", "D. Manejar excepciones."]},
@@ -15,9 +15,9 @@ class QuizGame:
                  "opciones": ["A. HyperText Markup Language", "B. High-Level Text Management Library", "C. Humanoid Text Manipulation Logic", "D. Hyperlink and Textual Markup Language"]}
             ],
             "Padre": [
-                {"pregunta": "En Java, ¿cuál es la diferencia entre una interfaz y una clase abstracta?",
-                 "opciones": ["A. Las interfaces no pueden contener métodos.", "B. Las clases abstractas no pueden tener constructores.",
-                              "C. Las interfaces pueden tener variables de instancia.", "D. Las clases abstractas pueden tener métodos implementados."]},
+                {"pregunta": "¿Qué es la herencia en programación orientada a objetos?",
+                 "opciones": ["A. Un concepto matemático.", "B.  Un principio de diseño de software.",
+                              "C. Un tipo de dato primitivo.", "D.  Un mecanismo para compartir archivos."]},
                 {"pregunta": "¿Quién escribió la obra literaria 'Cien años de soledad'?",
                  "opciones": ["A. Mario Vargas Llosa", "B. Gabriel García Márquez", "C. Julio Cortázar", "D. Isabel Allende"]},
                 {"pregunta": "¿Cuál es la capital de Australia?",
@@ -29,27 +29,25 @@ class QuizGame:
                               "C. Un componente de la interfaz gráfica de usuario.", "D. Un método estático en la clase Object."]},
                 {"pregunta": "¿En qué año se llevó a cabo la Revolución Rusa?",
                  "opciones": ["A. 1905", "B. 1917", "C. 1923", "D. 1945"]},
-                {"pregunta": "¿Cuál de las siguientes novelas fue escrita por Leo Tolstoy?",
-                 "opciones": ["A. 'Crimen y castigo'", "B. 'Guerra y paz'", "C. 'El extranjero'", "D. 'Matar a un ruiseñor'"]}
+                {"pregunta": "¿Quién es el autor de la novela 1984?",
+                 "opciones": ["A. George Orwell", "B. Aldous Huxley", "C. Ray Bradbury.", "D. Kurt Vonnegut."]}
             ]
         }
-        #Opciones a elegir
         self.respuestas = {
+        #Respuestas correctas de cada pregunta
             "Hijo": ["B", "C", "A"],
-            "Padre": ["C", "B", "A"],
+            "Padre": ["B", "B", "A"],
             "Abuelo": ["B", "B", "A"]
         }
-        #Porcentaje de errores
-        self.puntaje = {"Aciertos": 0, "Fallos": 0}
+        self.puntaje = {"Aciertos": 0, "Fallos": 0} #Contador de puntuaje
 
-    #Muestra las preguntas de QuizGame
+#Muestra la pregunta en la consola
     def mostrar_pregunta(self, nivel, pregunta):
         print(f"\nNivel {nivel}: {pregunta['pregunta']}")
         for opcion in pregunta['opciones']:
             print(opcion)
         print("\nIngresa tu respuesta (A, B, C o D): ")
-
-    #Temporizador por pregunta 
+#Temporizador cuando se acabe el tiempo(pregunta incorrecta)
     def temporizador(self):
-        print("\n¡Tiempo agotado! Esta pregunta se contará como incorrecta.") #Si pasa el timepo cuenta como fallo
+        print("\n¡Tiempo agotado! Esta pregunta se contará como incorrecta.")
         self.puntaje["Fallos"] += 1
